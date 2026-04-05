@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #0A0A0A;
+  --color-foreground: #F3F4F6;
+  --color-background-panel: #111111;
+  
+  --color-primary: #4F46E5;
+  --color-primary-hover: #6366F1;
+  --color-accent: #22D3EE;
+
+  --color-border: #1F2937;
+  --color-muted: #9CA3AF;
+}
+
+@layer base {
+  :root {
+    --background: 10 10 10;
+    --foreground: 243 244 246;
+  }
+  
+  *, ::before, ::after {
+    border-color: var(--color-border);
+  }
+  
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    @apply antialiased min-h-screen;
+    background-image: radial-gradient(circle at 50% 0%, rgba(79, 70, 229, 0.15) 0%, rgba(10, 10, 10, 1) 50%);
+  }
+}
