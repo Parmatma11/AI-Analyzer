@@ -7,7 +7,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto flex items-center justify-between h-16">
         <Link href="/" className="flex items-center gap-2 text-white font-bold text-xl drop-shadow-[0_0_10px_rgba(79,70,229,0.8)]">
           <Cpu className="text-primary-hover" />
-          <span>CodeInsight AI</span>
+          <span>CodeSage</span>
         </Link>
         <div className="flex gap-6 items-center">
           <Link href="/history" className="text-muted hover:text-white transition-colors">
