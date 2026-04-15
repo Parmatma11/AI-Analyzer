@@ -45,47 +45,42 @@ export default function AuthPage() {
   };
 
   return (
-    <div className="flex h-[calc(100vh-8rem)] items-center justify-center">
-      <div className="w-full max-w-md p-8 rounded-2xl bg-background-panel border border-border shadow-[0_0_30px_rgba(79,70,229,0.1)] relative overflow-hidden">
-        
-        {/* Glow effect */}
-        <div className="absolute -top-20 -left-20 w-40 h-40 bg-primary/20 rounded-full blur-[50px] pointer-events-none"></div>
-        <div className="absolute -bottom-20 -right-20 w-40 h-40 bg-accent/10 rounded-full blur-[50px] pointer-events-none"></div>
-
-        <h1 className="text-3xl font-bold text-center text-white mb-2 relative z-10">
-          {isLogin ? "Welcome Back" : "Create Account"}
+    <div className="flex items-center justify-center py-12">
+      <div className="w-full max-w-md p-8 md:p-10 rounded-[12px] bg-[color:var(--color-pure-white)] border border-[color:var(--color-border-cream)] shadow-[0_4px_24px_rgba(0,0,0,0.02)] relative overflow-hidden">
+        <h1 className="font-serif text-[32px] font-medium text-center text-[color:var(--color-near-black)] mb-2 leading-tight tracking-tight">
+          {isLogin ? "Welcome back" : "Create account"}
         </h1>
-        <p className="text-center text-muted mb-8 relative z-10">
+        <p className="text-center text-[color:var(--color-olive)] mb-8 text-[16px]">
           {isLogin ? "Sign in to view your past analyses" : "Join to save your code history"}
         </p>
 
         {error && (
-          <div className="mb-4 bg-red-500/10 border border-red-500/50 text-red-500 text-sm px-4 py-2 rounded-lg relative z-10">
+          <div className="mb-6 bg-[color:var(--color-warm-sand)] border border-[color:var(--color-crimson)]/20 text-[color:var(--color-crimson)] text-[14px] px-4 py-3 rounded-[8px]">
             {error}
           </div>
         )}
 
-        <form onSubmit={handleAuth} className="flex flex-col gap-4 relative z-10">
-          <div className="flex flex-col gap-1">
-            <label className="text-sm font-medium text-foreground">Email</label>
+        <form onSubmit={handleAuth} className="flex flex-col gap-5">
+          <div className="flex flex-col gap-1.5">
+            <label className="text-[14px] font-medium text-[color:var(--color-near-black)]">Email</label>
             <input 
               type="email" 
               required 
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="bg-black/40 border border-border rounded-xl px-4 py-2.5 text-white focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+              className="bg-[color:var(--color-ivory)] border border-[color:var(--color-border-warm)] rounded-[8px] px-4 py-2.5 text-[color:var(--color-near-black)] focus:outline-none focus:border-[color:var(--color-focus-blue)] focus:ring-1 focus:ring-[color:var(--color-focus-blue)] transition-all placeholder:text-[color:var(--color-stone)]"
               placeholder="you@example.com"
             />
           </div>
           
-          <div className="flex flex-col gap-1">
-            <label className="text-sm font-medium text-foreground">Password</label>
+          <div className="flex flex-col gap-1.5">
+            <label className="text-[14px] font-medium text-[color:var(--color-near-black)]">Password</label>
             <input 
               type="password" 
               required 
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="bg-black/40 border border-border rounded-xl px-4 py-2.5 text-white focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+              className="bg-[color:var(--color-ivory)] border border-[color:var(--color-border-warm)] rounded-[8px] px-4 py-2.5 text-[color:var(--color-near-black)] focus:outline-none focus:border-[color:var(--color-focus-blue)] focus:ring-1 focus:ring-[color:var(--color-focus-blue)] transition-all placeholder:text-[color:var(--color-stone)]"
               placeholder="••••••••"
             />
           </div>
@@ -93,19 +88,19 @@ export default function AuthPage() {
           <button 
             type="submit" 
             disabled={loading}
-            className="mt-4 flex items-center justify-center w-full py-2.5 bg-primary hover:bg-primary-hover text-white rounded-xl font-medium transition-all shadow-[0_0_15px_rgba(79,70,229,0.4)] disabled:opacity-50 disabled:cursor-not-allowed"
+            className="mt-2 flex items-center justify-center w-full py-3 bg-[color:var(--color-terracotta)] hover:opacity-90 text-[color:var(--color-ivory)] rounded-[8px] font-medium transition-opacity shadow-[0_0_0_1px_var(--color-terracotta)] disabled:opacity-50 disabled:cursor-not-allowed text-[16px]"
           >
             {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : (isLogin ? "Sign In" : "Sign Up")}
           </button>
         </form>
 
-        <p className="mt-6 text-center text-sm text-muted relative z-10">
+        <p className="mt-8 text-center text-[15px] text-[color:var(--color-olive)]">
           {isLogin ? "Don't have an account?" : "Already have an account?"}{" "}
           <button 
             onClick={() => setIsLogin(!isLogin)}
-            className="text-accent hover:text-white transition-colors font-medium"
+            className="text-[color:var(--color-terracotta)] hover:underline underline-offset-4 transition-all font-medium"
           >
-            {isLogin ? "Sign Up" : "Sign In"}
+            {isLogin ? "Sign up" : "Sign in"}
           </button>
         </p>
       </div>

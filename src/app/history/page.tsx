@@ -69,39 +69,42 @@ export default function HistoryPage() {
   }
 
   return (
-    <div className="flex flex-col md:flex-row gap-6 h-[calc(100vh-8rem)]">
-      <div className="w-full md:w-1/3 bg-background-panel border border-border rounded-2xl overflow-y-auto custom-scrollbar p-4 flex flex-col gap-3 shadow-[0_0_20px_rgba(34,211,238,0.05)]">
-        <h2 className="text-lg font-semibold text-white mb-2 px-2 sticky top-0 bg-background-panel z-10 py-2 border-b border-border">Your History</h2>
-        {history.map((item) => (
-          <button
-            key={item.id}
-            onClick={() => setSelected(item)}
-            className={`text-left p-4 rounded-xl border transition-all ${
-              selected?.id === item.id 
-                ? "bg-primary/20 border-primary/50 shadow-[0_0_15px_rgba(79,70,229,0.2)]" 
-                : "bg-black/20 border-border hover:bg-black/40"
-            }`}
-          >
-            <div className="flex justify-between items-center mb-2">
-              <span className="text-xs font-mono uppercase text-accent bg-accent/10 px-2 py-0.5 rounded border border-accent/20">
-                {item.language}
-              </span>
-              <span className="text-xs text-muted">
-                {new Date(item.created_at).toLocaleDateString()}
-              </span>
-            </div>
-            <p className="text-sm text-foreground line-clamp-2 font-mono bg-black/50 p-2 rounded-lg border border-border/50">
-              {item.code}
-            </p>
-          </button>
-        ))}
+    <div className="flex flex-col md:flex-row gap-8 h-full min-h-[600px]">
+      <div className="w-full md:w-1/3 bg-[color:var(--color-pure-white)] border border-[color:var(--color-border-cream)] rounded-[12px] overflow-y-auto shrink-0 flex flex-col shadow-[0_4px_24px_rgba(0,0,0,0.02)]">
+        <h2 className="font-serif text-[24px] font-medium text-[color:var(--color-near-black)] px-6 py-5 sticky top-0 bg-[color:var(--color-ivory)] z-10 border-b border-[color:var(--color-border-cream)]">Your History</h2>
+        <div className="p-4 flex flex-col gap-3">
+          {history.map((item) => (
+            <button
+              key={item.id}
+              onClick={() => setSelected(item)}
+              className={`text-left p-4 rounded-[10px] border transition-all ${
+                selected?.id === item.id 
+                  ? "bg-[color:var(--color-ivory)] border-[color:var(--color-near-black)] ring-1 ring-[color:var(--color-near-black)]" 
+                  : "bg-transparent border-[color:var(--color-border-warm)] hover:bg-[color:var(--color-ivory)]"
+              }`}
+            >
+              <div className="flex justify-between items-center mb-3">
+                <span className="text-[12px] font-medium uppercase tracking-wider text-[color:var(--color-terracotta)] bg-[color:var(--color-warm-sand)] px-2 py-0.5 rounded-[4px]">
+                  {item.language}
+                </span>
+                <span className="text-[12px] text-[color:var(--color-stone)]">
+                  {new Date(item.created_at).toLocaleDateString()}
+                </span>
+              </div>
+              <p className="text-[14px] text-[color:var(--color-olive)] line-clamp-2 font-mono bg-[color:var(--color-ivory)] p-3 rounded-[6px] border border-[color:var(--color-border-warm)]/50">
+                {item.code}
+              </p>
+            </button>
+          ))}
+        </div>
       </div>
-      <div className="w-full md:w-2/3 h-[50vh] md:h-full">
+      <div className="w-full md:w-2/3 h-[600px] md:h-auto flex flex-col">
         {selected ? (
           <ResultPanel result={selected} explainLike5={false} />
         ) : (
-          <div className="h-full flex items-center justify-center text-muted border border-border border-dashed rounded-2xl bg-black/10">
-            Select an item to view analysis
+          <div className="h-full flex flex-col items-center justify-center text-[color:var(--color-stone)] border border-[color:var(--color-border-cream)] border-dashed rounded-[12px] bg-[color:var(--color-ivory)]/50 p-12 text-center">
+            <h3 className="font-serif text-[20px] text-[color:var(--color-near-black)] mb-2">Nothing selected</h3>
+            <p>Select an item from your history to view the analysis.</p>
           </div>
         )}
       </div>

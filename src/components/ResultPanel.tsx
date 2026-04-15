@@ -51,8 +51,8 @@ export default function ResultPanel({ result, explainLike5 }: ResultPanelProps) 
   };
 
   return (
-    <div className="flex flex-col h-full bg-background-panel rounded-2xl border border-border shadow-[0_0_20px_rgba(79,70,229,0.05)] overflow-hidden">
-      <div className="flex bg-black/20 overflow-x-auto border-b border-border hide-scrollbar">
+    <div className="flex flex-col h-full bg-[color:var(--color-pure-white)] rounded-[12px] border border-[color:var(--color-border-cream)] shadow-[0_4px_24px_rgba(0,0,0,0.02)] overflow-hidden transition-shadow hover:shadow-[0_4px_24px_rgba(0,0,0,0.05)] w-full">
+      <div className="flex bg-[color:var(--color-ivory)] overflow-x-auto border-b border-[color:var(--color-border-cream)] hide-scrollbar shrink-0">
         {tabs.map((tab) => {
           const Icon = tab.icon;
           return (
@@ -60,38 +60,38 @@ export default function ResultPanel({ result, explainLike5 }: ResultPanelProps) 
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
               className={cn(
-                "flex items-center gap-2 px-4 py-3 text-sm font-medium transition-all whitespace-nowrap",
+                "flex items-center gap-2 px-4 py-3.5 text-[15px] font-medium transition-colors whitespace-nowrap border-b-2",
                 activeTab === tab.id
-                  ? "text-accent border-b-2 border-accent bg-accent/5 shadow-[inset_0_-1px_10px_rgba(34,211,238,0.1)]"
-                  : "text-muted hover:text-white hover:bg-white/5"
+                  ? "text-[color:var(--color-near-black)] border-[color:var(--color-near-black)]"
+                  : "text-[color:var(--color-olive)] border-transparent hover:text-[color:var(--color-near-black)]"
               )}
             >
-              <Icon className="w-4 h-4" />
+              <Icon className="w-[18px] h-[18px]" strokeWidth={1.5} />
               {tab.label}
             </button>
           )
         })}
       </div>
 
-      <div className="flex-1 p-6 overflow-y-auto custom-scrollbar relative">
-        <div className="absolute top-4 right-4 relative-copy-btn">
+      <div className="flex-1 p-6 md:p-8 overflow-y-auto relative">
+        <div className="absolute top-4 right-4">
             <button 
               onClick={handleCopy}
-              className="p-2 bg-black/40 hover:bg-black/60 rounded-lg text-muted hover:text-white transition-colors flex items-center justify-center shadow-lg backdrop-blur-sm z-10"
+              className="p-2 border border-[color:var(--color-border-warm)] bg-[color:var(--color-pure-white)] hover:bg-[color:var(--color-ivory)] rounded-[8px] text-[color:var(--color-olive)] hover:text-[color:var(--color-near-black)] transition-colors shadow-[0_2px_8px_rgba(0,0,0,0.04)]"
               title="Copy to clipboard"
             >
-              {copied ? <CheckCircle className="w-4 h-4 text-green-400" /> : <Copy className="w-4 h-4" />}
+              {copied ? <CheckCircle className="w-[18px] h-[18px] text-[color:var(--color-terracotta)]" /> : <Copy className="w-[18px] h-[18px]" strokeWidth={1.5} />}
             </button>
         </div>
         
         {explainLike5 && activeTab === "explanation" && (
-          <div className="mb-4 inline-flex items-center gap-2 px-3 py-1 bg-gradient-to-r from-accent/20 to-primary/10 border border-accent/20 text-accent text-xs font-semibold rounded-full">
-            <BookOpen className="w-3 h-3" />
+          <div className="mb-6 inline-flex items-center gap-1.5 px-3 py-1 bg-[color:var(--color-warm-sand)] text-[color:var(--color-terracotta)] text-[13px] font-medium rounded-[6px]">
+            <BookOpen className="w-[14px] h-[14px]" />
             ELI5 Mode Active
           </div>
         )}
 
-        <div className="prose prose-invert prose-blue max-w-none prose-p:leading-relaxed prose-pre:bg-black/50 prose-pre:border prose-pre:border-border">
+        <div className="prose max-w-none prose-p:leading-[1.60] prose-p:text-[16px] xl:prose-p:text-[17px] prose-headings:font-serif prose-headings:font-medium text-[color:var(--color-near-black)] prose-strong:text-[color:var(--color-near-black)] prose-strong:font-medium prose-pre:bg-[color:var(--color-ivory)] prose-pre:text-[color:var(--color-near-black)] prose-pre:border prose-pre:border-[color:var(--color-border-warm)] prose-code:text-[color:var(--color-terracotta)] prose-code:bg-[color:var(--color-warm-sand)] prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-[4px] prose-code:before:content-none prose-code:after:content-none">
           <ReactMarkdown rehypePlugins={[rehypeHighlight]}>
             {contentToRender}
           </ReactMarkdown>

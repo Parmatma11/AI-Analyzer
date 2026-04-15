@@ -3,11 +3,11 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
-  title: "CodeInsight AI",
-  description: "Futuristic Code Analysis Platform",
+  title: "Claude-inspired Code Review",
+  description: "A warm, editorial take on code analysis.",
 };
 
 export default function RootLayout({
@@ -17,9 +17,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.className} min-h-screen flex flex-col`}>
+      <body className={`${inter.variable} min-h-screen flex flex-col`}>
         <Navbar />
-        <main className="flex-1 w-full max-w-7xl mx-auto p-4 md:p-8">
+        <main className="flex-1 w-full max-w-[1200px] mx-auto px-4 md:px-8 py-10 md:py-16">
           {children}
         </main>
       </body>

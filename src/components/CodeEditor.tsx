@@ -16,13 +16,13 @@ export default function CodeEditor({ onAnalyze, isAnalyzing }: CodeEditorProps) 
   const [explainLike5, setExplainLike5] = useState(false);
 
   return (
-    <div className="flex flex-col h-full bg-background-panel rounded-2xl border border-border shadow-[0_0_20px_rgba(34,211,238,0.05)] overflow-hidden">
-      <div className="flex items-center justify-between p-4 border-b border-border bg-black/20">
+    <div className="flex flex-col h-full bg-[color:var(--color-pure-white)] rounded-[12px] border border-[color:var(--color-border-cream)] shadow-[0_4px_24px_rgba(0,0,0,0.02)] overflow-hidden transition-shadow hover:shadow-[0_4px_24px_rgba(0,0,0,0.05)] relative z-10 w-full">
+      <div className="flex items-center justify-between p-3 px-4 border-b border-[color:var(--color-border-cream)] bg-[color:var(--color-ivory)]">
         <div className="flex items-center gap-4">
           <select 
             value={language}
             onChange={(e) => setLanguage(e.target.value)}
-            className="bg-black/40 border border-border text-white text-sm rounded-lg px-3 py-1.5 focus:outline-none focus:ring-1 focus:ring-accent"
+            className="bg-[color:var(--color-pure-white)] border border-[color:var(--color-border-warm)] text-[color:var(--color-near-black)] text-[14px] rounded-[6px] px-3 py-1.5 focus:outline-none focus:border-[color:var(--color-focus-blue)] focus:ring-1 focus:ring-[color:var(--color-focus-blue)] cursor-pointer"
           >
             <option value="javascript">JavaScript</option>
             <option value="typescript">TypeScript</option>
@@ -33,12 +33,12 @@ export default function CodeEditor({ onAnalyze, isAnalyzing }: CodeEditorProps) 
             <option value="rust">Rust</option>
           </select>
           
-          <label className="flex items-center gap-2 text-sm text-muted cursor-pointer">
+          <label className="flex items-center gap-2 text-[14px] text-[color:var(--color-olive)] cursor-pointer select-none">
             <input 
               type="checkbox" 
               checked={explainLike5}
               onChange={(e) => setExplainLike5(e.target.checked)}
-              className="rounded bg-black/40 border-border text-primary focus:ring-primary-hover"
+              className="rounded-[4px] border-[color:var(--color-border-warm)] text-[color:var(--color-terracotta)] focus:ring-[color:var(--color-focus-blue)] cursor-pointer w-4 h-4"
             />
             Explain like I'm 5
           </label>
@@ -48,10 +48,10 @@ export default function CodeEditor({ onAnalyze, isAnalyzing }: CodeEditorProps) 
           onClick={() => onAnalyze(code, language, explainLike5)}
           disabled={isAnalyzing || !code.trim()}
           className={cn(
-            "flex items-center gap-2 px-4 py-1.5 rounded-lg text-sm font-medium transition-all shadow-[0_0_10px_rgba(79,70,229,0.3)]",
+            "flex items-center gap-2 px-3 py-1.5 rounded-[8px] text-[15px] font-medium transition-all shadow-[0_0_0_1px_var(--color-terracotta)]",
             isAnalyzing 
-              ? "bg-primary/50 text-white/70 cursor-not-allowed" 
-              : "bg-primary hover:bg-primary-hover text-white hover:shadow-[0_0_20px_rgba(79,70,229,0.5)]"
+              ? "bg-[color:var(--color-terracotta)] opacity-50 text-[color:var(--color-ivory)] cursor-not-allowed" 
+              : "bg-[color:var(--color-terracotta)] hover:opacity-90 text-[color:var(--color-ivory)] shadow-[0_0_0_1px_var(--color-terracotta)]"
           )}
         >
           {isAnalyzing ? <Loader2 className="w-4 h-4 animate-spin" /> : <Play className="w-4 h-4" />}
@@ -59,22 +59,26 @@ export default function CodeEditor({ onAnalyze, isAnalyzing }: CodeEditorProps) 
         </button>
       </div>
       
-      <div className="flex-1 p-2">
+      <div className="flex-1 p-0 relative">
         <MonacoEditor
           height="100%"
           language={language}
-          theme="vs-dark"
+          theme="light"
           value={code}
           onChange={(value) => setCode(value || "")}
           options={{
             minimap: { enabled: false },
-            fontSize: 14,
-            padding: { top: 16 },
+            fontSize: 15,
+            fontFamily: "monospace",
+            padding: { top: 16, bottom: 16 },
             scrollBeyondLastLine: false,
             smoothScrolling: true,
             cursorBlinking: "smooth",
+            lineHeight: 24,
+            renderLineHighlight: "none",
+            hideCursorInOverviewRuler: true
           }}
-          className="rounded-lg overflow-hidden"
+          className="overflow-hidden"
         />
       </div>
     </div>
